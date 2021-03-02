@@ -23,8 +23,18 @@ const calcular = () => {
   const numeroPalabras = document.querySelectorAll(".resultado > li").length;
   document.querySelector(".contador-palabras").textContent = numeroPalabras;
 
-  const numeroCaracteres = document.querySelectorAll("resultado > li");
-  document.querySelectorAll(".contador-caracteres").textContent.length = numeroCaracteres;
-  console.log(numeroCaracteres);
+  let contador = 0;
+  for (const cont of variable.queryselectorAll(".resultado > li")) {
+    if (cont.textContent !== null) {
+      contador += cont.textContent.length;
+    }
+  }
+  nCaracteres.textContent = contador;
 };
+
+/*   Esto lo he dejado porque creo que es interesante, Mario queria que intentara hacerlo con el document.querySelectorAll
+      const numeroCaracteres = document.querySelectorAll(".resultado > li");
+      const caracteresNumero = numeroCaracteres.length.textContent;
+      console.log(caracteresNumero);
+    }; */
 calcular();
