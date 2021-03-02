@@ -4,6 +4,8 @@ const listaResultado = document.querySelector(".resultado");
 
 const nPalabras = document.querySelector(".contador-palabras");
 
+const nCaracteres = document.querySelector(".contador-caracteres");
+
 listaPalabras.addEventListener("click", (elemento) => {
   if (elemento.target !== listaPalabras) {
     const palabraCopiar = elemento.target.cloneNode(true);
@@ -19,7 +21,11 @@ listaResultado.addEventListener("click", (elementoResultado) => {
   }
 });
 
-const contarPalabras = (variable) => {
-  const palabrasContadas = variable.childElementCount;
-  nPalabras.textContent = palabrasContadas;
-};
+
+
+const calcular = () => {
+  const liListaResultado = document.querySelectorAll(".resultado > li")
+  for (const cosa of liListaResultado);
+
+
+
