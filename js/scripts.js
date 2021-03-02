@@ -25,8 +25,12 @@ document.querySelector(".crear").addEventListener("click", (elemento) => {
 function nuevoLi() {
   let nuevaPalabra = document.createElement("LI");
   const palabra = document.querySelector(".nueva-palabra").value;
-
   nuevaPalabra.innerText = palabra;
+
+  if (document.querySelector(".lenguaje").checked) {
+    nuevaPalabra.dataset.lenguaje = "si";
+  }
+  nuevaPalabra.dataset.veces = document.querySelector(".veces").value;
 
   document.querySelector(".lista-palabras").appendChild(nuevaPalabra);
 }
