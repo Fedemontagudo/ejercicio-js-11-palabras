@@ -97,9 +97,3 @@ button {
 button:disabled {
   opacity: 0.2;
 }
-
-.resultado > li {
-color: red;
-}
-
-

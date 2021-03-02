@@ -24,10 +24,11 @@ const calcular = () => {
   document.querySelector(".contador-palabras").textContent = numeroPalabras;
 
   let contador = 0;
-  for (const cont of variable.queryselectorAll(".resultado > li")) {
+  const resultado = document.querySelectorAll(".resultado > li");
+  for (const cont of resultado) {
     if (cont.textContent !== null) {
       contador += cont.textContent.length;
-    }
+    } else { contador = 0; }
   }
   nCaracteres.textContent = contador;
 };
