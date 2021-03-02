@@ -4,6 +4,8 @@ const listaResultado = document.querySelector(".resultado");
 
 const nCaracteres = document.querySelector(".contador-caracteres");
 
+const mediaPalabras = document.querySelector(".contador-media");
+
 listaPalabras.addEventListener("click", (elemento) => {
   if (elemento.target !== listaPalabras) {
     const palabraCopiar = elemento.target.cloneNode(true);
@@ -39,6 +41,15 @@ const calcular = () => {
     } else { contador = 0; }
   }
   nCaracteres.textContent = contador;
+
+  let longitudMedia = 0;
+  longitudMedia = Math.round((contador / listaResultado.children.length) * 100) / 100;
+  if (longitudMedia > 0) {
+    mediaPalabras.textContent = longitudMedia;
+  } else {
+    mediaPalabras.textContent = 0;
+  }
+
 };
 
 /*   Esto lo he dejado porque creo que es interesante, Mario queria que intentara hacerlo con el document.querySelectorAll
