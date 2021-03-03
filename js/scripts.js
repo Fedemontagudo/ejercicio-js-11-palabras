@@ -11,9 +11,12 @@ listaPalabras.addEventListener("click", (elemento) => {
 });
 
 document.querySelector(".nueva-palabra").addEventListener("change", elemento => {
-  document.querySelector(".crear").disabled = elemento.target.value === "";
 
-  document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
+  if (elemento.target.value === "") {
+    document.querySelector(".crear").disabled = elemento.target.value === "";
+  } else {
+    document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
+  }
 });
 
 document.querySelector(".crear").addEventListener("click", (elemento) => {
