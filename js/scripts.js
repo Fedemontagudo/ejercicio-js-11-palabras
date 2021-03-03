@@ -29,6 +29,18 @@ listaResultado.addEventListener("click", (elementoResultado) => {
   }
 });
 
+
+
+function comprobar(elemento) {
+  elemento.value === "" ? document.querySelector(".crear").disabled = true : document.querySelector(".crear").disabled = false;
+
+  elemento.value.search(" ") !== -1 ? document.querySelector(".crear").disabled = true : document.querySelector(".crear").disabled = false;
+}
+
+const contarPalabras = (variable) => {
+  const palabrasContadas = variable.childElementCount;
+  nPalabras.textContent = palabrasContadas;
+
 const calcular = () => {
   const numeroPalabras = document.querySelectorAll(".resultado > li").length;
   document.querySelector(".contador-palabras").textContent = numeroPalabras;
@@ -49,6 +61,7 @@ const calcular = () => {
   } else {
     mediaPalabras.textContent = 0;
   }
+
 
 };
 

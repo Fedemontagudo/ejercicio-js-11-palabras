@@ -47,10 +47,10 @@
   <section class="crear-palabras">
     <form class="form-palabras">
       <div class="form-grupo">
-        <input type="text" placeholder="Nueva palabra" required>
+        <input type="text" placeholder="Nueva palabra" class="nueva-palabra" onchange="comprobar(this)" required>
       </div>
       <div class="form-grupo">
-        <select required>
+        <select required class="veces">
           <option value="">Máximo de veces</option>
           <option value="0">Sin límite</option>
           <option value="1">1 vez</option>
@@ -59,10 +59,10 @@
         </select>
       </div>
       <div class="form-grupo">
-        <label><input type="checkbox"> Es un lenguaje de programación</label>
+        <label><input type="checkbox" class="lenguaje"> Es un lenguaje de programación</label>
       </div>
       <div class="form-grupo">
-        <button type="submit" disabled>Crear</button>
+        <button type="submit" class="crear" disabled>Crear</button>
       </div>
     </form>
   </section>
