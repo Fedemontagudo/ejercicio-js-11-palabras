@@ -1,6 +1,11 @@
 const listaPalabras = document.querySelector(".lista-palabras");
-
 const listaResultado = document.querySelector(".resultado");
+
+
+Array.from(document.querySelectorAll(".lista-palabras>li")).map(elemento => elemento.dataset.veces = "0");
+
+listaPalabras.addEventListener("click", (elemento) => {
+  const palabraCopiar = elemento.target.cloneNode(true);
 
 const nCaracteres = document.querySelector(".contador-caracteres");
 
@@ -29,12 +34,18 @@ listaResultado.addEventListener("click", (elementoResultado) => {
   }
 });
 
-document.querySelector(".nueva-palabra").addEventListener("change", (elemento) => {
-  //FIX - Al borrar se desactiva el boton.
 
-  document.querySelector(".crear").disabled = elemento.target.value === "";
+  //listaResultado.append(palabraCopiar);
+  comprobarVeces(palabraCopiar);
+});
 
-  document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
+document.querySelector(".nueva-palabra").addEventListener("change", elemento => {
+
+  if (elemento.target.value === "") {
+    document.querySelector(".crear").disabled = elemento.target.value === "";
+  } else {
+    document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
+  }
 });
 
 document.querySelector(".crear").addEventListener("click", (elemento) => {
@@ -42,6 +53,7 @@ document.querySelector(".crear").addEventListener("click", (elemento) => {
   const palabras = pasarArray(palabrasLi);
 
   let prueba = palabras.some(palabra => palabra.toLowerCase() === document.querySelector(".nueva-palabra").value.toLowerCase()) ? console.log("Palabra repetida") : nuevoLi();
+  elemento.preventDefault()
 });
 
 function nuevoLi() {
@@ -71,6 +83,23 @@ function comprobar(elemento) {
 
   elemento.value.search(" ") !== -1 ? document.querySelector(".crear").disabled = true : document.querySelector(".crear").disabled = false;
 
+}
+
+function comprobarVeces(palabraCopiar) {
+  const datosResultados = pasarArray(Array.from(document.querySelectorAll(".resultado>li")));
+  let i = 0;
+  if (datosResultados.length === 0) {
+    listaResultado.append(palabraCopiar);
+  } else {
+    if (palabraCopiar.dataset.veces === "0") {
+      listaResultado.append(palabraCopiar);
+    } else {
+      datosResultados.map(elemento => elemento.toLowerCase() === palabraCopiar.innerText.toLowerCase() ? i++ : i);
+      if (i < palabraCopiar.dataset.veces) {
+        listaResultado.append(palabraCopiar);
+      }
+    }
+  }
 }
 
 const contarPalabras = (variable) => {
