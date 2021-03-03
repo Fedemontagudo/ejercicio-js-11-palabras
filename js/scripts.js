@@ -2,7 +2,9 @@ const listaPalabras = document.querySelector(".lista-palabras");
 
 const listaResultado = document.querySelector(".resultado");
 
-const nPalabras = document.querySelector(".contador-palabras");
+const nCaracteres = document.querySelector(".contador-caracteres");
+
+const mediaPalabras = document.querySelector(".contador-media");
 
 listaPalabras.addEventListener("click", (elemento) => {
   if (elemento.target !== listaPalabras) {
@@ -11,7 +13,7 @@ listaPalabras.addEventListener("click", (elemento) => {
       palabraCopiar.textContent = primeraLetraMayus(palabraCopiar.textContent);
     }
     listaResultado.append(palabraCopiar);
-    contarPalabras(listaResultado);
+    calcular(listaResultado);
   }
 });
 
@@ -23,9 +25,10 @@ listaResultado.addEventListener("click", (elementoResultado) => {
       palabraConMayuscula.textContent = primeraLetraMayus(palabraConMayuscula.textContent);
     }
     elementoResultado.target.remove();
-    contarPalabras(listaResultado);
+    calcular(listaResultado);
   }
 });
+
 
 
 function comprobar(elemento) {
@@ -37,6 +40,36 @@ function comprobar(elemento) {
 const contarPalabras = (variable) => {
   const palabrasContadas = variable.childElementCount;
   nPalabras.textContent = palabrasContadas;
+
+const calcular = () => {
+  const numeroPalabras = document.querySelectorAll(".resultado > li").length;
+  document.querySelector(".contador-palabras").textContent = numeroPalabras;
+
+  let contador = 0;
+  const resultado = document.querySelectorAll(".resultado > li");
+  for (const cont of resultado) {
+    if (cont.textContent !== null) {
+      contador += cont.textContent.length;
+    } else { contador = 0; }
+  }
+  nCaracteres.textContent = contador;
+
+  let longitudMedia = 0;
+  longitudMedia = Math.round((contador / listaResultado.children.length) * 100) / 100;
+  if (longitudMedia > 0) {
+    mediaPalabras.textContent = longitudMedia;
+  } else {
+    mediaPalabras.textContent = 0;
+  }
+
+
 };
+
+/*   Esto lo he dejado porque creo que es interesante, Mario queria que intentara hacerlo con el document.querySelectorAll
+      const numeroCaracteres = document.querySelectorAll(".resultado > li");
+      const caracteresNumero = numeroCaracteres.length.textContent;
+      console.log(caracteresNumero);
+    }; */
+calcular();
 
 const primeraLetraMayus = (palabra) => palabra.charAt(0).toUpperCase() + palabra.slice(1);
