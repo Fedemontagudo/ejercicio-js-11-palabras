@@ -10,9 +10,7 @@ listaPalabras.addEventListener("click", (elemento) => {
   comprobarVeces(palabraCopiar);
 });
 
-document.querySelector(".nueva-palabra").addEventListener("change", (elemento) => {
-  //FIX - Al borrar se desactiva el boton.
-
+document.querySelector(".nueva-palabra").addEventListener("change", elemento => {
   document.querySelector(".crear").disabled = elemento.target.value === "";
 
   document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
@@ -58,12 +56,11 @@ function comprobarVeces(palabraCopiar) {
     if (palabraCopiar.dataset.veces === "0") {
       listaResultado.append(palabraCopiar);
     } else {
-      datosResultados.map(elemento => elemento.toLowerCase() === palabraCopiar.innerText.toLowerCase() ? console.log(i++) : i);
+      datosResultados.map(elemento => elemento.toLowerCase() === palabraCopiar.innerText.toLowerCase() ? i++ : i);
       if (i < palabraCopiar.dataset.veces) {
         listaResultado.append(palabraCopiar);
       }
     }
-
   }
 }
 
