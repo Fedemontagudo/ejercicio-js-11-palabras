@@ -29,12 +29,48 @@ listaResultado.addEventListener("click", (elementoResultado) => {
   }
 });
 
+document.querySelector(".nueva-palabra").addEventListener("change", (elemento) => {
+  //FIX - Al borrar se desactiva el boton.
 
+  document.querySelector(".crear").disabled = elemento.target.value === "";
+
+  document.querySelector(".crear").disabled = elemento.target.value.includes(" ");
+});
+
+document.querySelector(".crear").addEventListener("click", (elemento) => {
+  const palabrasLi = Array.from(document.querySelectorAll(".lista-palabras>li"));
+  const palabras = pasarArray(palabrasLi);
+
+  let prueba = palabras.some(palabra => palabra.toLowerCase() === document.querySelector(".nueva-palabra").value.toLowerCase()) ? console.log("Palabra repetida") : nuevoLi();
+});
+
+function nuevoLi() {
+  let nuevaPalabra = document.createElement("LI");
+  const palabra = document.querySelector(".nueva-palabra").value;
+  nuevaPalabra.innerText = palabra;
+
+  if (document.querySelector(".lenguaje").checked) {
+    nuevaPalabra.dataset.lenguaje = "si";
+  }
+  nuevaPalabra.dataset.veces = document.querySelector(".veces").value;
+
+  document.querySelector(".lista-palabras").appendChild(nuevaPalabra);
+}
+
+function pasarArray(lista) {
+  const palabras = [];
+
+  for (const key in lista) {
+    palabras.push(lista[key].innerText);
+  }
+
+  return palabras;
 
 function comprobar(elemento) {
   elemento.value === "" ? document.querySelector(".crear").disabled = true : document.querySelector(".crear").disabled = false;
 
   elemento.value.search(" ") !== -1 ? document.querySelector(".crear").disabled = true : document.querySelector(".crear").disabled = false;
+
 }
 
 const contarPalabras = (variable) => {
@@ -73,3 +109,4 @@ const calcular = () => {
 calcular();
 
 const primeraLetraMayus = (palabra) => palabra.charAt(0).toUpperCase() + palabra.slice(1);
+
